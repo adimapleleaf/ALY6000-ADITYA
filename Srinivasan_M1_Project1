@@ -1,9 +1,8 @@
-
 ## 1. Print your name at the top of the script
 print("ADITYA SRINIVASAN")
 
 ## 2. Install the vcd package
-install.packages("vcd")
+#install.packages("vcd")
 
 ##Observations: Here we install the package vcd 
 
@@ -11,13 +10,13 @@ install.packages("vcd")
 library(vcd)
 
 
-## 4. Plot a sales ~ temp scatter plot using the data below (pg 9):
+## 4. Plot a sales ~ temp scatter plot using the data below:
 ## Sales data: (7,11,15,20,19,11,18,10,6,22)
 ## Temperature data: (69,81,77,84,80,97,87,70,65,90)  
 
 Sales_data = c(7,11,15,20,19,11,18,10,6,22)
 Temperature_data = c(69,81,77,84,80,97,87,70,65,90)  
-plot(Sales_data,Temperature_data)
+plot(Sales_data,Temperature_data, main= "Sales vs. Temperature", xlab="Sales", ylab="Temperature")
 
 ##5. Find the mean temperature 
 mean (Temperature_data)
@@ -67,5 +66,4 @@ names(Student)
 ##15. Commit your code in your github/gitlab repo
 ##Below is the link for GitHub 
 ##https://github.com/adimapleleaf/ALY6000-ADITYA/blob/main/Srinivasan_M1_Project1
-
 

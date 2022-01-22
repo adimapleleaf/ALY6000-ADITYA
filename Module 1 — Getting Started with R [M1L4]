@@ -1,0 +1,141 @@
+#------------------------------------------------------#
+# R in Action: Chapter 1                               #
+#------------------------------------------------------#
+
+# In the following code q() is commented out so that
+# you don't quit the session
+
+# Listing 1.1 - A Sample R session
+
+age <- c(1, 3, 5, 2, 11, 9, 3, 9, 12, 3)
+weight <- c(4.4, 5.3, 7.2, 5.2, 8.5, 7.3, 6, 10.4, 
+    10.2, 6.1)
+
+##Age and weight data are entered as vectors using the function c(), which combines its arguments into a vector or list.
+
+mean(weight) ##mean of the weights 
+sd(weight) ##standard deviation of the weights
+cor(age, weight) ##correlation between age and weight
+plot(age, weight)##age is plotted against weight using the plot() function
+# q() ## The q() function ends the session and lets you quit.
+
+# Listing 1.2 - An example of commands used to manage
+# the R Workspace. Change the next line to one of your 
+# directories
+
+setwd("C:/myprojects/project1") ## current working directory is set to C:/myprojects/project1
+options() ##the current option settings are displayed
+options(digits=3) ##numbers are formatted to print with three digits after the decimal place
+x <- runif(20) ## a vector with 20 uniform random variates is created
+summary(x) ##summary statistics based on this data is generated
+hist(x) ##histogram based on this data is generated
+savehistory()
+save.image()
+# q()
+
+# Listing 1.3 - Working with a new package
+
+help.start() ##Opens the general help
+install.packages("vcd") ##Installs the vcd package
+help(package = "vcd") 
+library(vcd)
+help(Arthritis) ##read the description of the dataset Arthritis
+Arthritis ##Print out the Arthritis dataset
+example(Arthritis) ##Run the example that comes with the Arthritis dataset.
+# q()
+
+
+
+
+
+#--------------------------------------------------------#
+# R in Action: Chapter 2                                 #
+#--------------------------------------------------------#
+
+#  Creating vectors
+
+## The combine function c() is used to form the vector
+a <- c(1, 2, 5, 3, 6, -2, 4) #a is a numeric vector
+b <- c("one", "two", "three") #b is a character vector
+c <- c(TRUE, TRUE, TRUE, FALSE, TRUE, FALSE) #c is a logical vector
+
+# Using vector subscripts
+
+a <- c(1, 2, 5, 3, 6, -2, 4)
+a[3]
+a[c(1, 3, 5)]
+a[2:6] ##printing from 2nd element to 6th element of the vector, 'a'
+
+# Listing 2.1 - Creating Matrices
+
+y <- matrix(1:20, nrow = 5, ncol = 4) ##Creates a 5 × 4 matrix
+y
+cells <- c(1, 26, 24, 68)
+rnames <- c("R1", "R2")
+cnames <- c("C1", "C2")
+mymatrix <- matrix(cells, nrow = 2, ncol = 2, byrow = TRUE, 
+    dimnames = list(rnames, cnames)) ## 2 x 2 matrix filled by rows 
+mymatrix
+mymatrix <- matrix(cells, nrow = 2, ncol = 2, byrow = FALSE, 
+    dimnames = list(rnames, cnames)) ## 2 x 2 matrix filled by columns  
+mymatrix
+
+# Listing 2.2 - Using matrix subscripts
+
+x <- matrix(1:10, nrow = 2) ##2 × 5 matrix is created containing the numbers 1 to 10
+x
+x[2, ] ##the elements in the second row are selected
+x[, 2] ## the elements in the second column are selected
+x[1, 4] ##the element in the first row and fourth column is selected
+x[1, c(4, 5)] ##the elements in the first row and the fourth and fifth columns are selected 
+
+# Listing 2.3 - Creating an array
+
+dim1 <- c("A1", "A2")
+dim2 <- c("B1", "B2", "B3")
+dim3 <- c("C1", "C2", "C3", "C4")
+z <- array(1:24, c(2, 3, 4), dimnames = list(dim1, 
+    dim2, dim3))
+z
+
+##The above listing gives an example of creating a three-dimensional (2 × 3 × 4) array of numbers.
+
+# Listing 2.4 - Creating a dataframe
+
+patientID <- c(1, 2, 3, 4)
+age <- c(25, 34, 28, 52)
+diabetes <- c("Type1", "Type2", "Type1", "Type1")
+status <- c("Poor", "Improved", "Excellent", "Poor")
+patientdata <- data.frame(patientID, age, diabetes, 
+    status) ##A data frame is created with the data.frame() function
+patientdata
+
+# Listing 2.5 - Specifying elements of a dataframe
+
+patientdata[1:2]
+patientdata[c("diabetes", "status")]
+patientdata$age ##used to indicate a particular variable from a given data frame
+
+# Listing 2.6 - Using factors
+
+patientID <- c(1, 2, 3, 4) ##Enter data as vectors
+age <- c(25, 34, 28, 52) ##Enter data as vectors
+diabetes <- c("Type1", "Type2", "Type1", "Type1") ##Enter data as vectors
+status <- c("Poor", "Improved", "Excellent", "Poor") ##Enter data as vectors
+diabetes <- factor(diabetes)
+##The statement diabetes <- factor(diabetes) stores this vector as (1, 2, 1, 1) and associates it with 1 = Type1 and 2 = Type2 internally (the assignment is alphabetical).
+
+status <- factor(status, order = TRUE)
+patientdata <- data.frame(patientID, age, diabetes, 
+    status)
+str(patientdata) ##Displays the object structure
+summary(patientdata) ##Displays the object summary 
+
+#  Listing 2.7 - Creating a list
+
+g <- "My First List"
+h <- c(25, 26, 18, 39)
+j <- matrix(1:10, nrow = 5)
+k <- c("one", "two", "three")
+mylist <- list(title = g, ages = h, j, k) ##Creates a list
+mylist ##Prints the entire list
